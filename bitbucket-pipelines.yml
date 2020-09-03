@@ -1,0 +1,17 @@
+image: node:10.15.3
+
+pipelines:
+  branches:
+    front-end:
+      - step:
+          name: Build and Test
+          caches:
+            - node
+          script:
+            - cd test-one
+            - npm set audit false
+            - npm install
+            - npm run precommit
+            - npm run generate
+          artifacts:
+            - dist/**
